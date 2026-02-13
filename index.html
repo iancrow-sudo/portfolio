@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ian Crosby | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #00f0ff;
+      --secondary: #0a84ff;
+      --accent: #ff3b6d;
+      --bg-main: #090d17;
+      --bg-alt: #121b2f;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f7fbff;
+      --text-muted: #95a0bc;
+      --success: #1be6a4;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --img-contrast: 1;
+      --img-saturate: 1;
+      --img-brightness: 1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Work Sans", sans-serif;
+      color: var(--text-primary);
+      background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.12), transparent 40%),
+        linear-gradient(140deg, var(--bg-main) 0%, var(--bg-alt) 55%, #171f35 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
+    }
+
+    .site-wrap {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 52px;
+      backdrop-filter: blur(8px);
+      background: rgba(10, 15, 26, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      padding: 10px 12px 10px 20px;
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .brand {
+      font-family: "Orbitron", sans-serif;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      color: var(--primary);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      background: rgba(0, 240, 255, 0.12);
+    }
+
+    section {
+      margin-bottom: 56px;
+    }
+
+    .section-heading {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: clamp(20px, 4vw, 42px);
+      padding: clamp(28px, 5vw, 56px);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -90px;
+      right: -90px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.27), transparent 65%);
+    }
+
+    .hero-profile {
+      --profile-size: clamp(140px, 24vw, 220px);
+      width: var(--profile-size);
+      height: var(--profile-size);
+      min-width: var(--profile-size);
+      min-height: var(--profile-size);
+      max-width: var(--profile-size);
+      max-height: var(--profile-size);
+      border-radius: 50%;
+      position: relative;
+      display: grid;
+      place-items: center;
+      animation: pulseRing 2.8s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.35));
+      grid-column: 2;
+    }
+
+    .hero-profile::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(130deg, var(--primary), var(--secondary), var(--accent));
+      z-index: 0;
+      opacity: 0.95;
+    }
+
+    .hero-profile::after {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 240, 255, 0.38);
+      z-index: 0;
+      animation: expandPulse 2.8s ease-out infinite;
+    }
+
+    .hero-profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #091321;
+      position: relative;
+      z-index: 1;
+      background-image: url("./ian-profile.jpg");
+      background-size: cover;
+      background-position: center 22%;
+      background-repeat: no-repeat;
+      filter: saturate(var(--img-saturate)) contrast(var(--img-contrast)) brightness(var(--img-brightness));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      grid-column: 1;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.015);
+      }
+    }
+
+    @keyframes expandPulse {
+      0% {
+        opacity: 0.68;
+        transform: scale(0.99);
+      }
+      70% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.1);
+      }
+    }
+
+    .hero h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(2rem, 6vw, 3.7rem);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+      background: linear-gradient(120deg, var(--primary), #7fd7ff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 670px;
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 600;
+      padding: 11px 18px;
+      transition: 0.25s ease;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      color: #07121e;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 10px 22px rgba(0, 240, 255, 0.25);
+    }
+
+    .btn-outline {
+      border-color: rgba(0, 240, 255, 0.35);
+      background: rgba(0, 240, 255, 0.08);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(0, 240, 255, 0.14);
+    }
+
+    .about {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+    }
+
+    .about p {
+      color: var(--text-muted);
+      font-size: 1.03rem;
+      max-width: 78ch;
+    }
+
+    .project-carousel {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 16px 14px 30px;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 14px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(0, 240, 255, 0.04), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--card-border);
+      position: relative;
+    }
+
+    .project-carousel.is-accordion {
+      align-items: stretch;
+    }
+
+    .project-wrap {
+      position: relative;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) scale(0.92);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: rgba(7, 16, 30, 0.86);
+      color: var(--primary);
+      font-size: 1.25rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 210ms ease, transform 210ms ease, border-color 210ms ease;
+      z-index: 8;
+      backdrop-filter: blur(6px);
+    }
+
+    .carousel-arrow:hover {
+      border-color: rgba(0, 240, 255, 0.8);
+      transform: translateY(-50%) scale(1);
+    }
+
+    .carousel-arrow-left {
+      left: -10px;
+    }
+
+    .carousel-arrow-right {
+      right: -10px;
+    }
+
+    .carousel-arrow.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .project-carousel::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .project-carousel::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, rgba(0, 240, 255, 0.5), rgba(10, 132, 255, 0.5));
+      border-radius: 999px;
+    }
+
+    .project-card {
+      flex: 1 1 0;
+      min-width: 160px;
+      max-width: 360px;
+      min-height: 230px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(7, 14, 26, 0.8);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      transform: perspective(900px) rotateX(var(--card-rx, 0deg)) rotateY(var(--card-ry, 0deg));
+      transform-origin: center;
+      transition:
+        transform 220ms cubic-bezier(0.4, 0.0, 0.2, 1),
+        border-color 200ms cubic-bezier(0.4, 0.0, 0.2, 1),
+        box-shadow 220ms cubic-bezier(0.4, 0.0, 0.2, 1),
+        flex-basis 260ms cubic-bezier(0.4, 0.0, 0.2, 1),
+        flex-grow 260ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .project-carousel.is-accordion .project-card {
+      flex-basis: 0;
+    }
+
+    .project-carousel.is-accordion .project-card.is-expanded {
+      flex-grow: 2.6;
+    }
+
+    .project-carousel.is-accordion:hover .project-card:not(.is-expanded) {
+      flex-grow: 0.7;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(180deg, rgba(5, 12, 22, 0.35), rgba(5, 12, 22, 0.9)), var(--project-hero);
+      background-size: cover;
+      background-position: center;
+      filter: saturate(var(--img-saturate)) contrast(var(--img-contrast)) brightness(0.82);
+      transform: scale(1);
+      transition: transform 220ms cubic-bezier(0.4, 0.0, 0.2, 1), filter 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      z-index: 0;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: inherit;
+      background: radial-gradient(circle at center, rgba(0, 240, 255, 0.38), rgba(10, 132, 255, 0.18), transparent 70%);
+      opacity: 0;
+      transition: opacity 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within,
+    .project-card.is-active,
+    .project-card.is-expanded {
+      border-color: rgba(0, 240, 255, 0.55);
+      box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(0, 240, 255, 0.25),
+        0 0 22px rgba(0, 240, 255, 0.22);
+      z-index: 4;
+    }
+
+    .project-card:hover::before,
+    .project-card:focus-within::before,
+    .project-card.is-active::before,
+    .project-card.is-expanded::before {
+      filter: saturate(calc(var(--img-saturate) + 0.06)) contrast(1.08) brightness(0.92);
+      transform: scale(1.03);
+    }
+
+    .project-card:hover::after,
+    .project-card:focus-within::after,
+    .project-card.is-active::after,
+    .project-card.is-expanded::after {
+      opacity: 1;
+    }
+
+    .project-carousel:hover .project-card:not(:hover):not(.is-active) {
+      opacity: 0.9;
+    }
+
+    .project-card-content {
+      display: grid;
+      gap: 10px;
+      min-height: 100%;
+      position: relative;
+    }
+
+    .project-card-content h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .project-title {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 0;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .project-summary {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px 12px;
+      color: rgba(240, 250, 255, 0.95);
+      font-size: 0.9rem;
+      line-height: 1.45;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 220ms cubic-bezier(0.4, 0.0, 0.2, 1), transform 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .project-summary::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      bottom: -8px;
+      height: 120px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.25) 70%,
+        rgba(0, 0, 0, 0.45) 100%
+      );
+      opacity: 1;
+      z-index: -1;
+      border-radius: 0 0 12px 12px;
+      pointer-events: none;
+    }
+
+    .project-card:hover .project-summary,
+    .project-card:focus-within .project-summary,
+    .project-card.is-active .project-summary,
+    .project-card.is-expanded .project-summary {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-number {
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.82rem;
+      color: var(--primary);
+      letter-spacing: 0.8px;
+      margin-bottom: 0;
+    }
+
+    .project-details {
+      margin-top: 14px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: max-height 220ms ease, opacity 210ms ease, transform 220ms ease;
+    }
+
+    .project-card:hover .project-details,
+    .project-card:focus-within .project-details,
+    .project-card.is-active .project-details {
+      max-height: 220px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-details h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .project-details p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .project-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .operating-system {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(160deg, rgba(0, 240, 255, 0.06), rgba(10, 20, 34, 0.6));
+      box-shadow: var(--shadow);
+    }
+
+    .operating-system .section-intro {
+      color: var(--text-muted);
+      margin-top: -6px;
+      margin-bottom: 18px;
+      max-width: 72ch;
+    }
+
+    .operating-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .operating-card {
+      padding: 18px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 240, 255, 0.28);
+      background: linear-gradient(140deg, rgba(10, 20, 34, 0.55), rgba(7, 16, 30, 0.25));
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.25);
+      transform: perspective(900px) rotateX(0deg) rotateY(0deg);
+      transform-origin: center;
+      transition: transform 220ms cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 220ms cubic-bezier(0.4, 0.0, 0.2, 1), border-color 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .operating-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .operating-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .operating-card:hover,
+    .operating-card:focus-within {
+      transform: perspective(900px) rotateX(6deg) rotateY(-6deg) translateY(-6px);
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35),
+        0 0 22px rgba(0, 240, 255, 0.26);
+    }
+
+    .operating-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .operating-card::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -30%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.25), transparent 55%);
+      opacity: 0;
+      transition: opacity 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .operating-card:hover::after,
+    .operating-card:focus-within::after {
+      opacity: 1;
+    }
+
+    .operating-card p {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 200ms cubic-bezier(0.4, 0.0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0.0, 0.2, 1), max-height 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .operating-card:hover p,
+    .operating-card:focus-within p {
+      max-height: 120px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hub-carousel-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(3, 8, 16, 0.9);
+      backdrop-filter: blur(6px);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+      padding: 24px;
+    }
+
+    .hub-carousel-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hub-carousel-panel {
+      width: min(980px, 96vw);
+      border-radius: 18px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      padding: 12px;
+      position: relative;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hub-carousel-banner {
+      text-align: center;
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: rgba(210, 245, 255, 0.9);
+      opacity: 1;
+      transition: opacity 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .hub-carousel-panel.is-idle .hub-carousel-banner {
+      opacity: 0.35;
+    }
+
+    .hub-carousel-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--text-primary);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hub-carousel-media {
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .hub-carousel-media img {
+      width: 100%;
+      max-height: 64vh;
+      object-fit: cover;
+      border-radius: 14px;
+      border: none;
+      background: rgba(0, 0, 0, 0.2);
+      filter: saturate(var(--img-saturate)) contrast(var(--img-contrast)) brightness(var(--img-brightness));
+      transition: opacity 220ms cubic-bezier(0.4, 0.0, 0.2, 1), filter 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .hub-carousel-media img.is-fading {
+      opacity: 0;
+    }
+
+    .hub-carousel-desc {
+      max-width: 70ch;
+      margin: 0 auto;
+      text-align: center;
+      color: rgba(220, 236, 255, 0.88);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+
+    .hub-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .hub-carousel-prev {
+      left: 12px;
+    }
+
+    .hub-carousel-next {
+      right: 12px;
+    }
+
+    .contact {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      background: linear-gradient(150deg, rgba(0, 240, 255, 0.05), rgba(255, 255, 255, 0.02));
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+      max-width: 720px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.9rem;
+      color: #d4dcf0;
+      letter-spacing: 0.2px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 16, 30, 0.75);
+      color: var(--text-primary);
+      padding: 12px 13px;
+      font: inherit;
+      transition: 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(0, 240, 255, 0.75);
+      box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-status {
+      min-height: 24px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    .form-status.success {
+      color: var(--success);
+    }
+
+    .form-status.error {
+      color: #ff7b9f;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .project-card {
+        flex-basis: clamp(230px, 46vw, 300px);
+      }
+
+      .project-carousel.is-accordion .project-card,
+      .project-carousel.is-accordion .project-card.is-expanded,
+      .project-carousel.is-accordion:hover .project-card:not(.is-expanded) {
+        flex: 0 0 clamp(230px, 46vw, 300px);
+      }
+
+      .carousel-arrow-left {
+        left: -6px;
+      }
+
+      .carousel-arrow-right {
+        right: -6px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .top-nav {
+        flex-direction: column;
+        gap: 8px;
+        border-radius: 14px;
+        align-items: flex-start;
+        padding: 12px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .hero-content {
+        display: grid;
+        justify-items: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .project-carousel {
+        padding: 14px 12px 22px;
+      }
+
+      .project-card {
+        flex-basis: 78vw;
+      }
+
+      .project-carousel.is-accordion .project-card,
+      .project-carousel.is-accordion .project-card.is-expanded,
+      .project-carousel.is-accordion:hover .project-card:not(.is-expanded) {
+        flex: 0 0 78vw;
+      }
+
+      .carousel-arrow {
+        width: 38px;
+        height: 38px;
+      }
+
+      .zoomify-hero img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .about,
+      .contact {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-grid"></div>
+  <div class="site-wrap">
+    <nav class="top-nav reveal" aria-label="Main navigation">
+      <div class="brand">Ian Crosby</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero reveal" id="home">
+      <div class="hero-profile" role="img" aria-label="Ian Crosby portrait">
+        <span class="hero-profile-image" aria-hidden="true"></span>
+      </div>
+      <div class="hero-content">
+        <h1>Ian Crosby</h1>
+        <p>Modern Workplace Technologist. Enterprise Delivery × AI Exploration</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-outline" href="#contact">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about reveal" id="about">
+      <h2 class="section-heading">About Me</h2>
+      <p>
+        I am Ian Crosby. I work at the intersection of enterprise IT, workplace transformation, and collaboration technology.
+        Over the past decade, I’ve led desktop rollouts, AV upgrades, and operational improvements designed to be reliable,
+        scalable, and easy to adopt.
+      </p>
+      <p>
+        I’m also deeply passionate about AI and emerging technology — not just as trends, but as tools that can fundamentally
+        improve systems, decision-making, and how teams build and deliver at scale.
+      </p>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h2 class="section-heading">Projects</h2>
+      <div class="project-wrap">
+      <button class="carousel-arrow carousel-arrow-left" id="carouselLeft" type="button" aria-label="Scroll projects left">‹</button>
+      <button class="carousel-arrow carousel-arrow-right" id="carouselRight" type="button" aria-label="Scroll projects right">›</button>
+      <div class="project-carousel" aria-label="Project carousel" id="projectCarousel"></div>
+      </div>
+    </section>
+
+    <section class="operating-system reveal" id="operating-system">
+      <h2 class="section-heading">Operating System</h2>
+      <p class="section-intro">It's all about 'flow'. Operational focus areas that keep delivery steady, resilient, and aligned.</p>
+      <div class="operating-grid">
+        <article class="operating-card">
+          <h3>Retros & Sharebacks</h3>
+          <p>Turn outcomes into insights, with clear actions that improve every iteration.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Problem Management</h3>
+          <p>Identify root causes early and close the loop before issues recur.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Process Improvement</h3>
+          <p>Refine workflows to reduce friction and keep delivery predictable.</p>
+        </article>
+        <article class="operating-card">
+          <h3>System Health Monitoring</h3>
+          <p>Track signals, spot drift, and maintain reliable platform performance.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Stakeholder Coordination</h3>
+          <p>Align priorities and expectations across business and technical teams.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Migration Enablement</h3>
+          <p>Plan and support transitions with minimal disruption to daily work.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Momentum & Mentoring</h3>
+          <p>Build team confidence with steady coaching and practical guidance.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Daily Squad Rituals</h3>
+          <p>Keep delivery grounded with lightweight check-ins and shared cadence.</p>
+        </article>
+        <article class="operating-card">
+          <h3>Culture & Team Energy</h3>
+          <p>Reinforce a positive environment that sustains high performance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact reveal" id="contact">
+      <h2 class="section-heading">Contact</h2>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/ian-r-crosby/" target="_blank" rel="noopener noreferrer">Contact me on LinkedIn</a>
+    </section>
+  </div>
+
+  <div class="hub-carousel-overlay" id="hubCarouselOverlay" aria-hidden="true">
+    <div class="hub-carousel-panel" role="dialog" aria-modal="true" aria-labelledby="hubCarouselBanner">
+      <button class="hub-carousel-close" id="hubCarouselClose" type="button" aria-label="Close carousel">×</button>
+      <div class="hub-carousel-banner" id="hubCarouselBanner"></div>
+      <div class="hub-carousel-media">
+        <button class="hub-carousel-nav hub-carousel-prev" id="hubCarouselPrev" type="button" aria-label="Previous image">‹</button>
+        <img id="hubCarouselImage" alt="" />
+        <button class="hub-carousel-nav hub-carousel-next" id="hubCarouselNext" type="button" aria-label="Next image">›</button>
+      </div>
+      <div class="hub-carousel-desc" id="hubCarouselDesc"></div>
+    </div>
+  </div>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    const projectCardData = [
+      {
+        title: 'Zoomify the Hub',
+        oneLiner: 'Turned a social hub into a Zoom-first, event-ready space.',
+        context: 'A high-traffic central space needed to host town halls, hybrid meetings, and live presentations without disrupting day-to-day operations.',
+        solution: 'Integrated large-format displays, cameras, distributed audio, and room control with a Zoom-first workflow and streamlined UX.',
+        impact: 'Transformed a traditional workspace into a high-performance collaboration hub.'
+      },
+      {
+        title: 'LED Wall',
+        oneLiner: 'Designed a bold, enterprise-grade LED wall experience.',
+        context: 'A prominent public-facing area required a high-impact visual centerpiece for announcements and brand storytelling.',
+        solution: 'Delivered a modular LED wall setup with content workflows and calibration for color consistency and uptime.',
+        impact: 'Improved engagement, visual clarity, and stakeholder confidence in live content delivery.'
+      },
+      {
+        title: 'Windows 11 hardware upgrade',
+        oneLiner: 'Standardized meeting spaces for consistent collaboration.',
+        context: 'Meeting rooms had mixed equipment and inconsistent user experiences, slowing teams down.',
+        solution: 'Aligned hardware, codecs, and control interfaces to a repeatable room standard with clear usage patterns.',
+        impact: 'Managed hardware swaps with zero data loss and minimal disruption.'
+      },
+      {
+        title: 'New Interstate Office A/V Fit-out',
+        oneLiner: 'Built a scalable A/V foundation for a new office.',
+        context: 'A greenfield office build required reliable A/V with minimal operational overhead.',
+        solution: 'Planned infrastructure, installed core systems, and coordinated vendors to deliver a clean, future-proof setup.',
+        impact: 'Co-led large-scale interstate AV fit-out from design to go-live.'
+      },
+      {
+        title: 'Digital Signage',
+        oneLiner: 'Rolled out enterprise signage for real-time communication.',
+        context: 'Teams needed a faster way to share updates, events, and key metrics across locations.',
+        solution: 'Deployed a distributed signage network with centrally managed content scheduling.',
+        impact: 'Improved visibility of internal messaging and reduced reliance on manual updates.'
+      }
+    ];
+
+    const projectHeroMap = {
+      'Zoomify the Hub': './assets/zoomify/Zoom for Hub hero.png',
+      'LED Wall': './assets/led-wall/LED Wall2.png',
+      'Windows 11 hardware upgrade': './assets/windows-11/Windows 10 to Windows 11 hero.png',
+      'New Interstate Office A/V Fit-out': './assets/office-fitout/Convo room.jpg',
+      'Digital Signage': './assets/digital-signage/Cafe signage1.png'
+    };
+    const projectCarousel = document.getElementById('projectCarousel');
+    if (projectCarousel) {
+      projectCarousel.innerHTML = projectCardData.map((project, index) => {
+        const heroImage = projectHeroMap[project.title] || './assets/zoomify/zoomify-hero.jpg';
+        return `
+        <article class="project-card" tabindex="0" data-project-title="${project.title}" ${project.title === 'Zoomify the Hub' ? 'id="zoomifyCard"' : ''} style="--project-hero: url('${heroImage}')">
+          <p class="project-number">PROJECT ${String(index + 1).padStart(2, '0')}</p>
+          <div class="project-card-content">
+            <h3 class="project-title">${project.title}</h3>
+            <div class="project-summary">${project.impact}</div>
+          </div>
+        </article>
+      `;
+      }).join('');
+    }
+
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectWrap = document.querySelector('.project-wrap');
+    const leftArrow = document.getElementById('carouselLeft');
+    const rightArrow = document.getElementById('carouselRight');
+    const zoomifyCard = document.getElementById('zoomifyCard');
+    const hubCarouselOverlay = document.getElementById('hubCarouselOverlay');
+    const hubCarouselClose = document.getElementById('hubCarouselClose');
+    const hubCarouselPrev = document.getElementById('hubCarouselPrev');
+    const hubCarouselNext = document.getElementById('hubCarouselNext');
+    const hubCarouselImage = document.getElementById('hubCarouselImage');
+    const hubCarouselBanner = document.getElementById('hubCarouselBanner');
+    const hubCarouselDesc = document.getElementById('hubCarouselDesc');
+    const firstProjectCard = projectCards[0];
+    const lastProjectCard = projectCards[projectCards.length - 1];
+    const EDGE_ZONE_PX = 110;
+    let pointerNearLeftEdge = false;
+    let pointerNearRightEdge = false;
+    let firstCardHovered = false;
+    let lastCardHovered = false;
+    let leftArrowHovered = false;
+    let rightArrowHovered = false;
+
+    const setActiveProjectCard = (activeCard) => {
+      projectCards.forEach((card) => {
+        const isActive = card === activeCard;
+        card.classList.toggle('is-active', isActive);
+        card.classList.toggle('is-expanded', isActive);
+      });
+    };
+
+    const clearActiveProjectCards = () => {
+      projectCards.forEach((card) => card.classList.remove('is-active', 'is-expanded'));
+    };
+
+    const hideArrows = () => {
+      if (leftArrow) leftArrow.classList.remove('is-visible');
+      if (rightArrow) rightArrow.classList.remove('is-visible');
+    };
+
+    const updateArrowVisibility = () => {
+      const showLeft = pointerNearLeftEdge && (firstCardHovered || leftArrowHovered);
+      const showRight = pointerNearRightEdge && (lastCardHovered || rightArrowHovered);
+
+      if (leftArrow) leftArrow.classList.toggle('is-visible', showLeft);
+      if (rightArrow) rightArrow.classList.toggle('is-visible', showRight);
+    };
+
+    const resetCardTilt = (card) => {
+      card.style.setProperty('--card-rx', '0deg');
+      card.style.setProperty('--card-ry', '0deg');
+    };
+
+    projectCards.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        setActiveProjectCard(card);
+        if (card === firstProjectCard) firstCardHovered = true;
+        if (card === lastProjectCard) lastCardHovered = true;
+        updateArrowVisibility();
+      });
+      card.addEventListener('focusin', () => {
+        setActiveProjectCard(card);
+      });
+      card.addEventListener('click', () => setActiveProjectCard(card));
+
+      card.addEventListener('mousemove', (event) => {
+        const bounds = card.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width;
+        const y = (event.clientY - bounds.top) / bounds.height;
+        const tiltX = (0.5 - y) * 4;
+        const tiltY = (x - 0.5) * 5;
+
+        card.style.setProperty('--card-rx', `${tiltX.toFixed(2)}deg`);
+        card.style.setProperty('--card-ry', `${tiltY.toFixed(2)}deg`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        resetCardTilt(card);
+        if (card === firstProjectCard) firstCardHovered = false;
+        if (card === lastProjectCard) lastCardHovered = false;
+        updateArrowVisibility();
+        if (!card.matches(':focus-within')) {
+          card.classList.remove('is-active');
+        }
+      });
+
+      card.addEventListener('focusout', () => {
+        requestAnimationFrame(() => {
+          if (!card.matches(':focus-within')) {
+            card.classList.remove('is-active');
+          }
+        });
+      });
+    });
+
+    if (projectCarousel) {
+      projectCarousel.classList.add('is-accordion');
+      projectCarousel.addEventListener('mouseleave', () => {
+        clearActiveProjectCards();
+      });
+    }
+
+    if (projectWrap) {
+      projectWrap.addEventListener('mousemove', (event) => {
+        const bounds = projectWrap.getBoundingClientRect();
+        const relativeX = event.clientX - bounds.left;
+        pointerNearLeftEdge = relativeX <= EDGE_ZONE_PX;
+        pointerNearRightEdge = relativeX >= bounds.width - EDGE_ZONE_PX;
+        updateArrowVisibility();
+      });
+
+      projectWrap.addEventListener('mouseleave', () => {
+        pointerNearLeftEdge = false;
+        pointerNearRightEdge = false;
+        firstCardHovered = false;
+        lastCardHovered = false;
+        leftArrowHovered = false;
+        rightArrowHovered = false;
+        hideArrows();
+      });
+    }
+
+    if (leftArrow && projectCarousel) {
+      leftArrow.addEventListener('mouseenter', () => {
+        leftArrowHovered = true;
+        updateArrowVisibility();
+      });
+      leftArrow.addEventListener('mouseleave', () => {
+        leftArrowHovered = false;
+        updateArrowVisibility();
+      });
+      leftArrow.addEventListener('click', () => {
+        projectCarousel.scrollBy({ left: -280, behavior: 'smooth' });
+      });
+    }
+
+    if (rightArrow && projectCarousel) {
+      rightArrow.addEventListener('mouseenter', () => {
+        rightArrowHovered = true;
+        updateArrowVisibility();
+      });
+      rightArrow.addEventListener('mouseleave', () => {
+        rightArrowHovered = false;
+        updateArrowVisibility();
+      });
+      rightArrow.addEventListener('click', () => {
+        projectCarousel.scrollBy({ left: 280, behavior: 'smooth' });
+      });
+    }
+
+    const hubCarouselItemsByProject = {
+      'Zoomify the Hub': [
+        {
+          src: './assets/zoomify/Hybrid_Workplace_View_before.jpg',
+          alt: 'Before: hybrid workplace view'
+        },
+        {
+          src: './assets/zoomify/Zoom for the hub Coming soon.jpg',
+          alt: 'Before: hub space coming soon'
+        },
+        {
+          src: './assets/zoomify/Zoom for the hub Coming soon1.png',
+          alt: 'Before: hub space coming soon (alternate)'
+        },
+        {
+          src: './assets/zoomify/Enterprise_Fitout_In_Progress.jpg',
+          alt: 'In progress: enterprise fit-out'
+        },
+        {
+          src: './assets/zoomify/Onsite_Install_Coordination.jpg',
+          alt: 'In progress: onsite install coordination'
+        },
+        {
+          src: './assets/zoomify/Backend infrastructure rack.jpg',
+          alt: 'In progress: backend infrastructure rack'
+        },
+        {
+          src: './assets/zoomify/Pendant audio close up.jpg',
+          alt: 'In progress: pendant audio close-up'
+        },
+        {
+          src: './assets/zoomify/Hub_finished_view1.jpg',
+          alt: 'Finished: hub view 1'
+        },
+        {
+          src: './assets/zoomify/Hub View 2 treated.png',
+          alt: 'Finished: hub view 2'
+        },
+        {
+          src: './assets/zoomify/The_Hub_finished_Neon lights.jpg',
+          alt: 'Finished: hub neon lights'
+        },
+        {
+          src: './assets/zoomify/Hub Town Hall.jpg',
+          alt: 'Finished: town hall in the hub'
+        },
+        {
+          src: './assets/zoomify/Zoom for Hub hero.png',
+          alt: 'Finished: Zoom for Hub hero'
+        }
+      ],
+      'LED Wall': [
+        {
+          src: './assets/led-wall/LED Wall new.png',
+          alt: 'LED wall installation'
+        },
+        {
+          src: './assets/led-wall/LED Wall3.jpg',
+          alt: 'LED wall installation detail'
+        },
+        {
+          src: './assets/led-wall/LED Wall2.png',
+          alt: 'LED wall installation overview'
+        }
+      ],
+      'Digital Signage': [
+        {
+          src: './assets/digital-signage/Cafe signage1.png',
+          alt: 'Cafe signage'
+        },
+        {
+          src: './assets/digital-signage/digital signage2.jpg',
+          alt: 'Digital signage display'
+        },
+        {
+          src: './assets/digital-signage/digital signage3.jpg',
+          alt: 'Digital signage installation'
+        },
+        {
+          src: './assets/digital-signage/digital signage4.jpg',
+          alt: 'Digital signage view'
+        }
+      ],
+      'Windows 11 hardware upgrade': [
+        {
+          src: './assets/windows-11/Windows 10 to Windows 11 hero.png',
+          alt: 'Windows 10 to Windows 11 hero'
+        },
+        {
+          src: './assets/windows-11/HP Laptop 11.jpg',
+          alt: 'HP laptop Windows 11 upgrade'
+        },
+        {
+          src: './assets/windows-11/HP Windows 11 .avif',
+          alt: 'HP Windows 11 rollout'
+        },
+        {
+          src: './assets/windows-11/HP windows 11 2.avif',
+          alt: 'HP Windows 11 device'
+        },
+        {
+          src: './assets/windows-11/HP Windws 11 roll out.avif',
+          alt: 'HP Windows 11 rollout detail'
+        },
+        {
+          src: './assets/windows-11/OneDrive for data backups.jpeg',
+          alt: 'OneDrive data backups'
+        },
+        {
+          src: './assets/windows-11/windows migration bookings-self-service- calendar.png',
+          alt: 'Windows migration bookings calendar'
+        }
+      ],
+      'New Interstate Office A/V Fit-out': [
+        {
+          src: './assets/office-fitout/office AV fitoutbefore.jpg',
+          alt: 'Before: office fit-out space'
+        },
+        {
+          src: './assets/office-fitout/office AV fitoutbefore2.jpg',
+          alt: 'Before: office fit-out space (alternate view)'
+        },
+        {
+          src: './assets/office-fitout/office AV fitout1.jpg',
+          alt: 'In progress: office fit-out installation'
+        },
+        {
+          src: './assets/office-fitout/office AV fitout3.jpg',
+          alt: 'In progress: office fit-out installation detail'
+        },
+        {
+          src: './assets/office-fitout/office AV fitout4.jpg',
+          alt: 'In progress: office fit-out installation work'
+        },
+        {
+          src: './assets/office-fitout/Office AV fit out 6.jpg',
+          alt: 'In progress: office AV fit-out stage'
+        },
+        {
+          src: './assets/office-fitout/Office meeting room.jpg',
+          alt: 'Finished: office meeting room'
+        },
+        {
+          src: './assets/office-fitout/Office monitors.jpg',
+          alt: 'Finished: office monitors setup'
+        },
+        {
+          src: './assets/office-fitout/Office printer.jpg',
+          alt: 'Finished: office printer area'
+        },
+        {
+          src: './assets/office-fitout/Convo room.jpg',
+          alt: 'Finished: conversation room'
+        },
+        {
+          src: './assets/office-fitout/office AV fitouthero.jpg',
+          alt: 'Finished: office AV hero'
+        }
+      ]
+    };
+    let hubCarouselItems = hubCarouselItemsByProject['Zoomify the Hub'] || [];
+    const projectCarouselBlurbMap = {
+      'Zoomify the Hub': 'Designed and delivered an end-to-end AV uplift, integrating modern Zoom infrastructure, large-format displays, and intuitive room control. Partnered with vendors and stakeholders to create a seamless, future-ready meeting experience.',
+      'LED Wall': 'Transformed a high-traffic hallway into a dynamic, Zoom-managed LED showcase that elevated client experience and workplace engagement.',
+      'Windows 11 hardware upgrade': 'Led a coordinated Windows 11 hardware rollout across metro and interstate offices — managing bookings, orchestrating same-day device swaps, and ensuring calendars, data, and user workflows were fully protected before migration. Delivered remote enablement for distributed teams, securely decommissioned legacy hardware to compliance standards, and executed the transition with minimal disruption to business operations.',
+      'New Interstate Office A/V Fit-out': 'Delivered a full interstate AV fit-out from design to go-live — coordinating vendors, managing logistics remotely, and ensuring every room was collaboration-ready from day one.',
+      'Digital Signage': 'Delivered enterprise digital signage by building Zoom-enabled NUC endpoints and coordinating vendors from design through implementation. Improved visibility of internal comms, announcements, and events, strengthened staff engagement, and elevated the overall office aesthetic with seamless stakeholder management and hypercare support.'
+    };
+    let hubCarouselIndex = 0;
+    let hubCarouselIdleTimer = null;
+    let hubCarouselFadeTimer = null;
+
+    const setHubCarouselIdle = () => {
+      if (!hubCarouselPanel) return;
+      hubCarouselPanel.classList.add('is-idle');
+    };
+
+    const clearHubCarouselIdle = () => {
+      if (!hubCarouselPanel) return;
+      hubCarouselPanel.classList.remove('is-idle');
+      if (hubCarouselIdleTimer) {
+        clearTimeout(hubCarouselIdleTimer);
+      }
+      hubCarouselIdleTimer = setTimeout(setHubCarouselIdle, 2400);
+    };
+
+    const renderHubCarousel = (index) => {
+      if (!hubCarouselItems.length || !hubCarouselImage) return;
+      const safeIndex = ((index % hubCarouselItems.length) + hubCarouselItems.length) % hubCarouselItems.length;
+      hubCarouselIndex = safeIndex;
+      const item = hubCarouselItems[safeIndex];
+      hubCarouselImage.classList.add('is-fading');
+      if (hubCarouselFadeTimer) {
+        clearTimeout(hubCarouselFadeTimer);
+      }
+      hubCarouselFadeTimer = setTimeout(() => {
+        hubCarouselImage.src = item.src;
+        hubCarouselImage.alt = item.alt || 'Project image';
+        requestAnimationFrame(() => {
+          hubCarouselImage.classList.remove('is-fading');
+        });
+      }, 120);
+    };
+
+    const openHubCarousel = (index, title = '') => {
+      if (!hubCarouselOverlay) return;
+      if (hubCarouselBanner) hubCarouselBanner.textContent = title || 'Project';
+      hubCarouselItems = hubCarouselItemsByProject[title] || [];
+      if (hubCarouselDesc) {
+        hubCarouselDesc.textContent = projectCarouselBlurbMap[title] || '';
+      }
+      renderHubCarousel(index);
+      hubCarouselOverlay.classList.add('is-open');
+      hubCarouselOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      clearHubCarouselIdle();
+    };
+
+    const closeHubCarousel = () => {
+      if (!hubCarouselOverlay) return;
+      hubCarouselOverlay.classList.remove('is-open');
+      hubCarouselOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (hubCarouselIdleTimer) {
+        clearTimeout(hubCarouselIdleTimer);
+      }
+    };
+
+    projectCards.forEach((card) => {
+      const cardTitle = card.dataset.projectTitle;
+      if (!cardTitle || !hubCarouselItemsByProject[cardTitle]) return;
+      card.addEventListener('click', () => openHubCarousel(0, cardTitle));
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openHubCarousel(0, cardTitle);
+        }
+      });
+    });
+
+    if (hubCarouselPrev) {
+      hubCarouselPrev.addEventListener('click', () => {
+        renderHubCarousel(hubCarouselIndex - 1);
+        clearHubCarouselIdle();
+      });
+    }
+
+    if (hubCarouselNext) {
+      hubCarouselNext.addEventListener('click', () => {
+        renderHubCarousel(hubCarouselIndex + 1);
+        clearHubCarouselIdle();
+      });
+    }
+
+    if (hubCarouselClose) {
+      hubCarouselClose.addEventListener('click', closeHubCarousel);
+    }
+
+    if (hubCarouselOverlay) {
+      hubCarouselOverlay.addEventListener('click', (event) => {
+        if (event.target === hubCarouselOverlay) closeHubCarousel();
+      });
+      hubCarouselOverlay.addEventListener('mousemove', clearHubCarouselIdle);
+      hubCarouselOverlay.addEventListener('touchstart', clearHubCarouselIdle, { passive: true });
+      hubCarouselOverlay.addEventListener('touchmove', clearHubCarouselIdle, { passive: true });
+    }
+
+    if (hubCarouselImage) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      hubCarouselImage.addEventListener('touchstart', (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      hubCarouselImage.addEventListener('touchend', (event) => {
+        touchEndX = event.changedTouches[0].clientX;
+        const deltaX = touchEndX - touchStartX;
+        if (Math.abs(deltaX) > 35) {
+          if (deltaX > 0) {
+            renderHubCarousel(hubCarouselIndex - 1);
+          } else {
+            renderHubCarousel(hubCarouselIndex + 1);
+          }
+          clearHubCarouselIdle();
+        }
+      }, { passive: true });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeHubCarousel();
+      if (!hubCarouselOverlay?.classList.contains('is-open')) return;
+      if (event.key === 'ArrowLeft') {
+        renderHubCarousel(hubCarouselIndex - 1);
+        clearHubCarouselIdle();
+      }
+      if (event.key === 'ArrowRight') {
+        renderHubCarousel(hubCarouselIndex + 1);
+        clearHubCarouselIdle();
+      }
+    });
+
+  </script>
+</body>
+</html>
